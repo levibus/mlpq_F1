@@ -1,0 +1,6 @@
+begin %MLPQ%
+
+-- random table
+TmpAgg(T_t) :- truck(T_id,T_x,T_y,T_t), T_x=15.
+
+end %MLPQ%
