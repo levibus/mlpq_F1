@@ -1,8 +1,0 @@
-begin%savefile%
-sphere(i, x, y) :- 
-i=1, 
-x=0, 
-y=0.
-
-
-end%savefile%

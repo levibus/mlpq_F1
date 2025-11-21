@@ -1,0 +1,40 @@
+begin %MLPQ%
+outer_wall(id, x, y) :- id=1, x>=-62, x<=62, y>=-32, y<=32, y-x<=83, y+x<=83, y-x>=-83, y+x>=-83.
+outer_track(id, x, y) :- id=2, x>=-60, x<=60, y>=-30, y<=30, y-x<=80, y+x<=80, y-x>=-80, y+x>=-80.
+inner_track(id, x, y) :- id=3, x>=-50, x<=50, y>=-20, y<=20, y-x<=65, y+x<=65, y-x>=-65, y+x>=-65.
+finish_line(id, x, y) :- id=4, x>=-2, x<=2, y>=-30, y<=-20.
+
+track_light(id, x, y) :- id=5, x>=-41, x<=-39, y>=-32, y<=-30.
+track_light(id, x, y) :- id=5, x>=-16, x<=-14, y>=-32, y<=-30.
+track_light(id, x, y) :- id=5, x>=14, x<=16, y>=-32, y<=-30.
+track_light(id, x, y) :- id=5, x>=39, x<=41, y>=-32, y<=-30.
+track_light(id, x, y) :- id=5, x>=-41, x<=-39, y>=30, y<=32.
+track_light(id, x, y) :- id=5, x>=-16, x<=-14, y>=30, y<=32.
+track_light(id, x, y) :- id=5, x>=14, x<=16, y>=30, y<=32.
+track_light(id, x, y) :- id=5, x>=39, x<=41, y>=30, y<=32.
+track_light(id, x, y) :- id=5, x>=-62, x<=-60, y>=-11, y<=-9.
+track_light(id, x, y) :- id=5, x>=60, x<=62, y>=-11, y<=-9.
+track_light(id, x, y) :- id=5, x>=-62, x<=-60, y>=9, y<=11.
+track_light(id, x, y) :- id=5, x>=60, x<=62, y>=9, y<=11.
+
+grass(id, x, y) :- id=6, x>=-50, x<=-42, y<=20, y+x>=-54, y-x<=65.
+grass(id, x, y) :- id=6, x>=42, x<=50, y<=20, y-x>=-54, y+x<=65.
+grass(id, x, y) :- id=6, x>=-42, x<=42, y>=14, y<=20.
+grass(id, x, y) :- id=6, x>=-42, x<=0, y>=0, y<=14.
+
+inner_wall(id, x, y) :- id=7, y>=-20, y<=-19, x>=-40, x<=40.
+inner_wall(id, x, y) :- id=7, y>=-12, y<=-11, x>=-42, x<=-2.
+inner_wall(id, x, y) :- id=7, y>=-12, y<=-11, x>=2, x<=42.
+inner_wall(id, x, y) :- id=7, y>=-12, y<=14, x>=-42, x<=-41.
+inner_wall(id, x, y) :- id=7, y>=14, y<=15, x>=-42, x<=42.
+inner_wall(id, x, y) :- id=7, y>=-12, y<=14, x>=41, x<=42.
+
+pond(id, x, y) :- id=8, x>=-30, x<=-10, y>=5, y<=10.
+
+garage(id, x, y) :- id=9, x>=-35, x<=-10, y>=-8, y<=-3.
+garage(id, x, y) :- id=9, x>=5, x<=12, y>=3, y<=12.
+garage(id, x, y) :- id=9, x>=17, x<=24, y>=3, y<=12.
+garage(id, x, y) :- id=9, x>=29, x<=36, y>=3, y<=12.
+
+car(id, x, y, t) :- id=4, x-10t>=-60, x-10t<=-54, y>=1, y<=2, t>=0, t<=9. 
+end %MLPQ%
