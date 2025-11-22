@@ -13,6 +13,8 @@ def write_mlpq(
     dt_turn,
     dt_short_straight,
     dt_long_straight,
+    final_position_x=32,
+    final_position_y=-8,
 ):
 
     with open(filename, "a") as f:
@@ -197,8 +199,8 @@ def write_mlpq(
             )
         
         previous_t = next_t
-        next_x += (speed * previous_t)
-        next_y += 0
+        next_x = final_position_x
+        next_y = final_position_y
         previous_t += 1
         next_t = 1000
         
@@ -230,10 +232,12 @@ if __name__ == "__main__":
         x_position=0,
         y_position=-28,
         talent=4,
-        dt_first_straight=42,
+        dt_first_straight=44,
         dt_turn=10,
         dt_short_straight=32,
         dt_long_straight=90,
+        final_position_x=32,
+        final_position_y=-8,
     )
     
     # 1st left lane
@@ -244,10 +248,12 @@ if __name__ == "__main__":
         x_position=0,
         y_position=-24,
         talent=5,
-        dt_first_straight=42,
+        dt_first_straight=44,
         dt_turn=10,
         dt_short_straight=31,
         dt_long_straight=90,
+        final_position_x=32,
+        final_position_y=-4,
     )
     
     # 2nd right lane
@@ -258,10 +264,12 @@ if __name__ == "__main__":
         x_position=-4,
         y_position=-28,
         talent=3,
-        dt_first_straight=46,
+        dt_first_straight=48,
         dt_turn=10,
         dt_short_straight=32,
         dt_long_straight=90,
+        final_position_x=28,
+        final_position_y=-8,
     )
     
     # 2nd left lane
@@ -272,10 +280,12 @@ if __name__ == "__main__":
         x_position=-4,
         y_position=-24,
         talent=2,
-        dt_first_straight=46,
+        dt_first_straight=48,
         dt_turn=10,
         dt_short_straight=31,
         dt_long_straight=90,
+        final_position_x=28,
+        final_position_y=-4,
     )
     
     # 3rd right lane
@@ -286,10 +296,12 @@ if __name__ == "__main__":
         x_position=-8,
         y_position=-28,
         talent=3,
-        dt_first_straight=50,
+        dt_first_straight=52,
         dt_turn=10,
         dt_short_straight=32,
         dt_long_straight=90,
+        final_position_x=24,
+        final_position_y=-8,
     )
     
     # 3rd left lane
@@ -300,13 +312,15 @@ if __name__ == "__main__":
         x_position=-8,
         y_position=-24,
         talent=2,
-        dt_first_straight=50,
+        dt_first_straight=52,
         dt_turn=9,
         dt_short_straight=31,
         dt_long_straight=90,
+        final_position_x=24,
+        final_position_y=-4,
     )
     
-    # 3rd right lane
+    # 4th right lane
     write_mlpq(
         "output.txt",
         id=11,
@@ -314,13 +328,15 @@ if __name__ == "__main__":
         x_position=-12,
         y_position=-28,
         talent=3,
-        dt_first_straight=54,
+        dt_first_straight=56,
         dt_turn=10,
         dt_short_straight=32,
         dt_long_straight=90,
+        final_position_x=20,
+        final_position_y=-8,
     )
     
-    # 3rd left lane
+    # 4th left lane
     write_mlpq(
         "output.txt",
         id=11,
@@ -328,13 +344,15 @@ if __name__ == "__main__":
         x_position=-12,
         y_position=-24,
         talent=3,
-        dt_first_straight=54,
+        dt_first_straight=56,
         dt_turn=9,
         dt_short_straight=31,
         dt_long_straight=90,
+        final_position_x=20,
+        final_position_y=-4,
     )
     
-    # 3rd right lane
+    # 5th right lane
     write_mlpq(
         "output.txt",
         id=11,
@@ -342,13 +360,15 @@ if __name__ == "__main__":
         x_position=-16,
         y_position=-28,
         talent=4,
-        dt_first_straight=58,
+        dt_first_straight=60,
         dt_turn=10,
         dt_short_straight=32,
         dt_long_straight=90,
+        final_position_x=16,
+        final_position_y=-8,
     )
     
-    # 3rd left lane
+    # 5th left lane
     write_mlpq(
         "output.txt",
         id=11,
@@ -356,8 +376,10 @@ if __name__ == "__main__":
         x_position=-16,
         y_position=-24,
         talent=5,
-        dt_first_straight=58,
+        dt_first_straight=60,
         dt_turn=9,
         dt_short_straight=31,
         dt_long_straight=90,
+        final_position_x=16,
+        final_position_y=-4,
     )
