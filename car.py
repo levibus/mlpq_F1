@@ -53,6 +53,7 @@ def write_mlpq(
         previous_t += 1
         next_t += dt_turn
         
+        # second turn
         f.write(
             f"car{car_number}(id, x, y, t) :- "
             f"id={id}, x+{turn_speed}t>={next_x}, x+{turn_speed}t<={next_x + 1}, y-{turn_speed}t>={next_y}, y-{turn_speed}t<={next_y + 1}, "
@@ -64,9 +65,59 @@ def write_mlpq(
         previous_t += 1
         next_t += dt_long_straight
         
+        # back long straight
         f.write(
             f"car{car_number}(id, x, y, t) :- "
             f"id={id}, x+{speed}t>={next_x}, x+{speed}t<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
+            f"t>={previous_t}, t<={next_t}. \n"
+        )
+        
+        previous_t = next_t
+        next_x += turn_speed * previous_t - (speed * previous_t)
+        next_y += turn_speed * previous_t
+        previous_t += 1
+        next_t += dt_turn
+        
+        # third turn
+        f.write(
+            f"car{car_number}(id, x, y, t) :- "
+            f"id={id}, x+{turn_speed}t>={next_x}, x+{turn_speed}t<={next_x + 1}, y+{turn_speed}t>={next_y}, y+{turn_speed}t<={next_y + 1}, "
+            f"t>={previous_t}, t<={next_t}. \n"
+        )
+        
+        previous_t = next_t
+        next_x += -(turn_speed * previous_t)
+        next_y += speed * previous_t - (turn_speed * previous_t)
+        previous_t += 1
+        next_t += dt_short_straight
+        
+        f.write(
+            f"car{car_number}(id, x, y, t) :- "
+            f"id={id}, x>={next_x}, x<={next_x + 1}, y+{speed}t>={next_y}, y+{speed}t<={next_y + 1}, "
+            f"t>={previous_t}, t<={next_t}. \n"
+        )
+        
+        previous_t = next_t
+        next_x += -(turn_speed * previous_t)
+        next_y += turn_speed * previous_t - (speed * previous_t)
+        previous_t += 1
+        next_t += dt_turn
+        
+        f.write(
+            f"car{car_number}(id, x, y, t) :- "
+            f"id={id}, x-{turn_speed}t>={next_x}, x-{turn_speed}t<={next_x + 1}, y+{turn_speed}t>={next_y}, y+{turn_speed}t<={next_y + 1}, "
+            f"t>={previous_t}, t<={next_t}. \n"
+        )
+        
+        previous_t = next_t
+        next_x += -(speed * previous_t) + (turn_speed * previous_t)
+        next_y += -(turn_speed * previous_t)
+        previous_t += 1
+        next_t += dt_long_straight
+        
+        f.write(
+            f"car{car_number}(id, x, y, t) :- "
+            f"id={id}, x-{speed}t>={next_x}, x-{speed}t<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
             f"t>={previous_t}, t<={next_t}. \n"
         )
 
