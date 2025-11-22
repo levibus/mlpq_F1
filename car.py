@@ -70,10 +70,8 @@ def write_mlpq(
         next_turn_speed =  math.ceil(next_speed / 2)
         dt_turn_var =  math.floor(dt_turn / next_turn_speed)
 
-        # TODO: something is going wrong here
-
         previous_t = next_t
-        next_x += speed * previous_t - (next_turn_speed * previous_t)
+        next_x += (next_turn_speed * previous_t)
         next_y += speed * previous_t - (next_turn_speed * previous_t)
         previous_t += 1
         next_t += dt_turn_var
@@ -93,7 +91,7 @@ def write_mlpq(
         dt_long_straight_var =  math.floor(dt_long_straight / next_speed)
 
         previous_t = next_t
-        next_x += speed * previous_t - (next_turn_speed * previous_t)
+        next_x += next_speed * previous_t - (turn_speed * previous_t)
         next_y += turn_speed * previous_t
         previous_t += 1
         next_t += dt_long_straight_var
@@ -113,10 +111,13 @@ def write_mlpq(
         dt_turn_var =  math.floor(dt_turn / next_turn_speed)
         
         previous_t = next_t
-        next_x += turn_speed * previous_t - (next_speed * previous_t)
-        next_y += turn_speed * previous_t
+        next_x += next_turn_speed * previous_t - (speed * previous_t)
+        next_y += next_turn_speed * previous_t
         previous_t += 1
         next_t += dt_turn_var
+        
+        speed = next_speed
+        turn_speed = next_turn_speed
         
         # third turn
         f.write(
@@ -125,48 +126,60 @@ def write_mlpq(
             f"t>={previous_t}, t<={next_t}. \n"
         )
         
-        speed = random.randint(1,3)
-        turn_speed =  math.ceil(speed / 2)
-        dt_short_straight_var =  math.floor(dt_short_straight / speed)
+        next_speed = random.randint(1,3)
+        next_turn_speed =  math.ceil(next_speed / 2)
+        dt_short_straight_var =  math.floor(dt_short_straight / next_speed)
         
         previous_t = next_t
         next_x += -(turn_speed * previous_t)
-        next_y += speed * previous_t - (turn_speed * previous_t)
+        next_y += next_speed * previous_t - (turn_speed * previous_t)
         previous_t += 1
         next_t += dt_short_straight_var
         
+        speed = next_speed
+        turn_speed = next_turn_speed
+        
+        # second short straight
         f.write(
             f"car{car_number}(id, x, y, t) :- "
             f"id={id}, x>={next_x}, x<={next_x + 1}, y+{speed}t>={next_y}, y+{speed}t<={next_y + 1}, "
             f"t>={previous_t}, t<={next_t}. \n"
         )
         
-        speed = random.randint(1,3)
-        turn_speed =  math.ceil(speed / 2)
-        dt_turn_var =  math.floor(dt_turn / turn_speed)
+        next_speed = random.randint(1,3)
+        next_turn_speed =  math.ceil(next_speed / 2)
+        dt_turn_var =  math.floor(dt_turn / next_turn_speed)
         
         previous_t = next_t
-        next_x += -(turn_speed * previous_t)
-        next_y += turn_speed * previous_t - (speed * previous_t)
+        next_x += -(next_turn_speed * previous_t) # TODO: is this right?
+        next_y += next_turn_speed * previous_t - (speed * previous_t)
         previous_t += 1
         next_t += dt_turn_var
         
+        speed = next_speed
+        turn_speed = next_turn_speed
+        
+        # fourth turn
         f.write(
             f"car{car_number}(id, x, y, t) :- "
             f"id={id}, x-{turn_speed}t>={next_x}, x-{turn_speed}t<={next_x + 1}, y+{turn_speed}t>={next_y}, y+{turn_speed}t<={next_y + 1}, "
             f"t>={previous_t}, t<={next_t}. \n"
         )
         
-        speed = random.randint(1,3)
-        turn_speed =  math.ceil(speed / 2)
-        dt_long_straight_var =  math.floor(dt_long_straight / speed)
+        next_speed = random.randint(1,3)
+        next_turn_speed =  math.ceil(next_speed / 2)
+        dt_long_straight_var =  math.floor(dt_long_straight / next_speed)
         
         previous_t = next_t
-        next_x += -(speed * previous_t) + (turn_speed * previous_t)
+        next_x += -(next_speed * previous_t) + (turn_speed * previous_t)
         next_y += -(turn_speed * previous_t)
         previous_t += 1
-        next_t += dt_long_straight
+        next_t += dt_long_straight_var
         
+        speed = next_speed
+        turn_speed = next_turn_speed
+        
+        # front long straight
         f.write(
             f"car{car_number}(id, x, y, t) :- "
             f"id={id}, x-{speed}t>={next_x}, x-{speed}t<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
@@ -192,10 +205,10 @@ if __name__ == "__main__":
         car_number=1,
         x_position=0,
         y_position=-28,
-        dt_first_straight=44,
-        dt_turn=16,
-        dt_short_straight=36,
-        dt_long_straight=96,
+        dt_first_straight=42,
+        dt_turn=10,
+        dt_short_straight=32,
+        dt_long_straight=90,
     )
     
     write_mlpq(
@@ -204,8 +217,8 @@ if __name__ == "__main__":
         car_number=2,
         x_position=0,
         y_position=-24,
-        dt_first_straight=48,
-        dt_turn=16,
-        dt_short_straight=36,
-        dt_long_straight=98,
+        dt_first_straight=42,
+        dt_turn=10,
+        dt_short_straight=32,
+        dt_long_straight=90,
     )
