@@ -1,3 +1,3 @@
-# F1 Race Implemented in MLPQ
+# IndyCar Race Implemented in MLPQ
 
 TODO
