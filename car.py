@@ -40,8 +40,8 @@ def write_mlpq(
                     if lap_number == 2:
                         condition = "bad"
             f.write(
-                f"tire{car_number}(tire_id, hardness, condition) :- "
-                f"tire_id={tire_id}, hardness=\"{hardness}\", condition=\"{condition}\". \n"
+                f"tire{car_number}(tire_id, hardness, condition, lap_number) :- "
+                f"tire_id={tire_id}, hardness=\"{hardness}\", condition=\"{condition}\", lap_number={lap_number}. \n"
             )
 
         lap_number = 1
