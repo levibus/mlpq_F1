@@ -40,12 +40,13 @@ def write_mlpq(
                     if lap_number == 2:
                         condition = "bad"
             f.write(
-                f"tire{car_number}(tire_id, hardness, condition, lap_number) :- "
+                f"tire(tire_id, hardness, condition, lap_number) :- "
                 f"tire_id={tire_id}, hardness=\"{hardness}\", condition=\"{condition}\", lap_number={lap_number}. \n"
             )
 
         lap_number = 1
-        condition = "good"        
+        condition = "good"     
+        track_section = "first_straight"   
 
         next_speed = random.randint(1,talent)
         next_turn_speed = math.ceil(next_speed / 2)
@@ -61,8 +62,8 @@ def write_mlpq(
 
         # first straight
         f.write(
-            f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-            f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x-{speed}t>={next_x}, x-{speed}t<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
+            f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+            f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x-{speed}t>={next_x}, x-{speed}t<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
             f"t>={previous_t}, t<={next_t}. \n"
         )
          
@@ -94,11 +95,12 @@ def write_mlpq(
             
             speed = next_speed
             turn_speed = next_turn_speed
+            track_section = "first_turn"   
         
             # first turn
             f.write(
-                f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x-{turn_speed}t>={next_x}, x-{turn_speed}t<={next_x + 1}, y-{turn_speed}t>={next_y}, y-{turn_speed}t<={next_y + 1}, "
+                f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x-{turn_speed}t>={next_x}, x-{turn_speed}t<={next_x + 1}, y-{turn_speed}t>={next_y}, y-{turn_speed}t<={next_y + 1}, "
                 f"t>={previous_t}, t<={next_t}. \n"
             )
             
@@ -114,11 +116,12 @@ def write_mlpq(
             
             speed = next_speed
             turn_speed = next_turn_speed
+            track_section = "first_short_straight"   
             
             # first short straight 
             f.write(
-                f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x>={next_x}, x<={next_x + 1}, y-{speed}t>={next_y}, y-{speed}t<={next_y + 1}, "
+                f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x>={next_x}, x<={next_x + 1}, y-{speed}t>={next_y}, y-{speed}t<={next_y + 1}, "
                 f"t>={previous_t}, t<={next_t}. \n"
             )
             
@@ -134,11 +137,12 @@ def write_mlpq(
             
             speed = next_speed
             turn_speed = next_turn_speed
+            track_section = "second_turn"   
             
             # second turn
             f.write(
-                f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x+{turn_speed}t>={next_x}, x+{turn_speed}t<={next_x + 1}, y-{turn_speed}t>={next_y}, y-{turn_speed}t<={next_y + 1}, "
+                f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x+{turn_speed}t>={next_x}, x+{turn_speed}t<={next_x + 1}, y-{turn_speed}t>={next_y}, y-{turn_speed}t<={next_y + 1}, "
                 f"t>={previous_t}, t<={next_t}. \n"
             )
             
@@ -154,11 +158,12 @@ def write_mlpq(
             
             speed = next_speed
             turn_speed = next_turn_speed
+            track_section = "back_long_straight"   
             
             # back long straight
             f.write(
-                f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x+{speed}t>={next_x}, x+{speed}t<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
+                f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x+{speed}t>={next_x}, x+{speed}t<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
                 f"t>={previous_t}, t<={next_t}. \n"
             )
             
@@ -174,11 +179,12 @@ def write_mlpq(
             
             speed = next_speed
             turn_speed = next_turn_speed
+            track_section = "third_turn"   
             
             # third turn
             f.write(
-                f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x+{turn_speed}t>={next_x}, x+{turn_speed}t<={next_x + 1}, y+{turn_speed}t>={next_y}, y+{turn_speed}t<={next_y + 1}, "
+                f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x+{turn_speed}t>={next_x}, x+{turn_speed}t<={next_x + 1}, y+{turn_speed}t>={next_y}, y+{turn_speed}t<={next_y + 1}, "
                 f"t>={previous_t}, t<={next_t}. \n"
             )
             
@@ -194,11 +200,12 @@ def write_mlpq(
             
             speed = next_speed
             turn_speed = next_turn_speed
+            track_section = "second_short_straight"   
             
             # second short straight
             f.write(
-                f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x>={next_x}, x<={next_x + 1}, y+{speed}t>={next_y}, y+{speed}t<={next_y + 1}, "
+                f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x>={next_x}, x<={next_x + 1}, y+{speed}t>={next_y}, y+{speed}t<={next_y + 1}, "
                 f"t>={previous_t}, t<={next_t}. \n"
             )
             
@@ -214,11 +221,12 @@ def write_mlpq(
             
             speed = next_speed
             turn_speed = next_turn_speed
+            track_section = "fourth_turn"   
             
             # fourth turn
             f.write(
-                f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x-{turn_speed}t>={next_x}, x-{turn_speed}t<={next_x + 1}, y+{turn_speed}t>={next_y}, y+{turn_speed}t<={next_y + 1}, "
+                f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x-{turn_speed}t>={next_x}, x-{turn_speed}t<={next_x + 1}, y+{turn_speed}t>={next_y}, y+{turn_speed}t<={next_y + 1}, "
                 f"t>={previous_t}, t<={next_t}. \n"
             )
             
@@ -234,11 +242,12 @@ def write_mlpq(
             
             speed = next_speed
             turn_speed = next_turn_speed
+            track_section = "front_long_straight"   
             
             # front long straight
             f.write(
-                f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x-{speed}t>={next_x}, x-{speed}t<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
+                f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+                f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x-{speed}t>={next_x}, x-{speed}t<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
                 f"t>={previous_t}, t<={next_t}. \n"
             )
             
@@ -252,8 +261,8 @@ def write_mlpq(
         
         # stop at end
         f.write(
-            f"car{car_number}(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent) :- "
-            f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, x>={next_x}, x<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
+            f"car(car_id, x, y, t, driver_id, team_id, tire_id, lap_number, talent, track_section) :- "
+            f"car_id={car_id}, driver_id={driver_id}, team_id={team_id}, tire_id={tire_id}, lap_number={lap_number}, talent={talent}, track_section=\"{track_section}\", x>={next_x}, x<={next_x + 1}, y>={next_y}, y<={next_y + 1}, "
             f"t>={previous_t}, t<={next_t}. \n"
         )
          
@@ -272,7 +281,7 @@ if __name__ == "__main__":
     # 1st right lane
     write_mlpq(
         "output.txt",
-        car_id=10,
+        car_id=1,
         driver_id=1,
         team_id=1,
         tire_id=1,
@@ -291,7 +300,7 @@ if __name__ == "__main__":
     # 1st left lane
     write_mlpq(
         "output.txt",
-        car_id=11,
+        car_id=2,
         driver_id=2,
         team_id=2,
         tire_id=2,
@@ -310,7 +319,7 @@ if __name__ == "__main__":
     # 2nd right lane
     write_mlpq(
         "output.txt",
-        car_id=11,
+        car_id=3,
         driver_id=3,
         team_id=3,
         tire_id=3,
@@ -329,7 +338,7 @@ if __name__ == "__main__":
     # 2nd left lane
     write_mlpq(
         "output.txt",
-        car_id=11,
+        car_id=4,
         driver_id=4,
         team_id=4,
         tire_id=4,
@@ -348,7 +357,7 @@ if __name__ == "__main__":
     # 3rd right lane
     write_mlpq(
         "output.txt",
-        car_id=11,
+        car_id=5,
         driver_id=5,
         team_id=5,
         tire_id=5,
@@ -367,7 +376,7 @@ if __name__ == "__main__":
     # 3rd left lane
     write_mlpq(
         "output.txt",
-        car_id=11,
+        car_id=6,
         driver_id=6,
         team_id=5,
         tire_id=6,
@@ -386,7 +395,7 @@ if __name__ == "__main__":
     # 4th right lane
     write_mlpq(
         "output.txt",
-        car_id=11,
+        car_id=7,
         driver_id=7,
         team_id=4,
         tire_id=7,
@@ -405,7 +414,7 @@ if __name__ == "__main__":
     # 4th left lane
     write_mlpq(
         "output.txt",
-        car_id=11,
+        car_id=8,
         driver_id=8,
         team_id=3,
         tire_id=8,
@@ -424,7 +433,7 @@ if __name__ == "__main__":
     # 5th right lane
     write_mlpq(
         "output.txt",
-        car_id=11,
+        car_id=9,
         driver_id=9,
         team_id=2,
         tire_id=9,
@@ -443,7 +452,7 @@ if __name__ == "__main__":
     # 5th left lane
     write_mlpq(
         "output.txt",
-        car_id=11,
+        car_id=10,
         driver_id=10,
         team_id=1,
         tire_id=10,
