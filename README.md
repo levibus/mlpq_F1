@@ -1,5 +1,6 @@
 # IndyCar Race Implemented in MLPQ
 Levi Busching, Joseph Holy, Aaron Perkey
+Presentation Video: https://youtu.be/jtV48J4WkHQ
 
 ![still image of track](track.png)
 
