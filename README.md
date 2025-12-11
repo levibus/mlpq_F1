@@ -28,7 +28,9 @@ This file generates the paths of all cars and their associated tires. First, it 
 
 ## ER Diagram
 
+![still image of track](ERDiagram1.png)
 
+![still image of track](ERDiagram2.png)
 
 ## Sources
 
