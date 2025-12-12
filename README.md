@@ -37,8 +37,14 @@ The ER Diagram for our project is below.
 
 1. Find how many times the car goes off the track
 
-SELECT `car_id, lap_number`  
-FROM `car`  
+SELECT 
+```
+car_id, lap_number
+```
+FROM
+```
+car
+```
 WHERE  
 ```
 x >= -50,
@@ -57,8 +63,14 @@ An example of the output is:
 
 2. Given a time instance, find an estimate of the condition of the tires and the lap position of each car
 
-SELECT `C.car_id, C.lap_number, T.condition`  
-FROM `car as C, tire as T`  
+SELECT 
+```
+C.car_id, C.lap_number, T.condition
+```
+FROM 
+```
+car as C, tire as T
+```
 WHERE  
 ```
 C.tire_id = T.tire_id,
@@ -71,9 +83,18 @@ An example of the output is:
 
 3. Given a time instance, find the location of every car at that time
 
-SELECT `C.car_id, C.lap_number, C.track_section`  
-FROM `car as C`  
-WHERE `C.t=230`  
+SELECT 
+```
+C.car_id, C.lap_number, C.track_section
+``` 
+FROM 
+```
+car as C
+```
+WHERE 
+```
+C.t=230
+```
 
 An example of the output is:  
 ![Query Results in MLPQ](images/query1.png)
@@ -82,8 +103,14 @@ An example of the output is:
 
 For this one we tried to return the time, but MLPQ handles t as continuous and the program would run out of memory. To prevent this, we use a histogram of times to see what cars came before or after others within certain time segments.
 
-SELECT `C.car_id`  
-FROM `car as C`  
+SELECT 
+```
+C.car_id
+```
+FROM 
+```
+car as C
+``` 
 WHERE  
 ```
 C.t < 450,
