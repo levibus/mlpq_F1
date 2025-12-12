@@ -2,7 +2,7 @@
 Levi Busching, Joseph Holy, Aaron Perkey<br>
 Presentation Video: https://youtu.be/jtV48J4WkHQ
 
-![still image of track](track.png)
+![still image of track](images/track.png)
 
 This project simulates an IndyCar race in the database system MLPQ for our CSCE413/813 Database Systems final project. To do this, we created a constraint database that models moving objects. 
 
@@ -28,7 +28,70 @@ This file generates the paths of all cars and their associated tires. First, it 
 
 ## ER Diagram
 
+The ER Diagram for our project is below. 
 
+![ER Diagram for Track, cars, Drivers, Tires, and Teams](images/ER1.png)
+![ER Diagram for static track components](images/ER2.png)
+
+## Queries
+
+1. Find how many times the car goes off the track
+
+SELECT `car_id, lap_number`  
+FROM `car`  
+WHERE  
+```
+x >= -50,
+x <= 50,
+y >= -20,
+y <= 20,
+y - x >= -65,
+y - x <= 65,
+y + x >= -65,
+y + x <= 65,
+lap_number < 4
+```
+
+An example of the output is:  
+![Query Results in MLPQ](images/query1.png)
+
+2. Given a time instance, find an estimate of the condition of the tires and the lap position of each car
+
+SELECT `C.car_id, C.lap_number, T.condition`  
+FROM `car as C, tire as T`  
+WHERE  
+```
+C.tire_id = T.tire_id,
+C.t=300,
+C.lap_number = T.lap_number
+```
+
+An example of the output is:  
+![Query Results in MLPQ](images/query1.png)
+
+3. Given a time instance, find the location of every car at that time
+
+SELECT `C.car_id, C.lap_number, C.track_section`  
+FROM `car as C`  
+WHERE `C.t=230`  
+
+An example of the output is:  
+![Query Results in MLPQ](images/query1.png)
+
+4. Find the car that wins the race
+
+For this one we tried to return the time, but MLPQ handles t as continuous and the program would run out of memory. To prevent this, we use a histogram of times to see what cars came before or after others within certain time segments.
+
+SELECT `C.car_id`  
+FROM `car as C`  
+WHERE  
+```
+C.t < 450,
+C.lap_number = 4
+```
+
+An example of the output is:  
+![Query Results in MLPQ](images/query1.png)
 
 ## Sources
 
